@@ -34,7 +34,7 @@ def create_default_local_file():
     with open(path, 'w') as f:
         settings = EnvSettings()
 
-        f.write('from test.evaluation.environment import EnvSettings\n\n')
+        f.write('from .environment import EnvSettings\n\n')
         f.write('def local_env_settings():\n')
         f.write('    settings = EnvSettings()\n\n')
         f.write('    # Set your local paths here.\n\n')
@@ -110,7 +110,8 @@ def env_settings():
     try:
         env_module = importlib.import_module(env_module_name)
         return env_module.local_env_settings()
-    except:
+    except Exception as ex:
+        print(ex)
         env_file = os.path.join(os.path.dirname(__file__), 'local.py')
 
         # Create a default file

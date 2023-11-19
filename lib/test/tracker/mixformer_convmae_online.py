@@ -39,7 +39,8 @@ class MixFormerOnline(BaseTracker):
             self.online_sizes = self.cfg.TEST.ONLINE_SIZES[DATASET_NAME]
         else:
             self.update_intervals = self.cfg.DATA.MAX_SAMPLE_INTERVAL
-            self.online_size = 3
+            self.online_sizes = [3]
+
         self.update_interval = self.update_intervals[0]
         self.online_size = self.online_sizes[0]
         if hasattr(params, 'online_sizes'):
@@ -70,12 +71,12 @@ class MixFormerOnline(BaseTracker):
                 self.network.set_online(self.template, self.online_template)
 
         self.online_state = info['init_bbox']
-        
+
         self.online_image = image
         self.max_pred_score = -1.0
         self.online_max_template = template
         self.online_forget_id = 0
-        
+
         # save states
         self.state = info['init_bbox']
         self.frame_id = 0

@@ -1,3 +1,5 @@
+import os
+
 from .environment import EnvSettings
 
 def local_env_settings():
@@ -24,7 +26,8 @@ def local_env_settings():
     settings.youtubevos_dir = ''
 
     settings.workspace_dir = "."  # Base directory for saving network checkpoints.
-    settings.proj_dir = settings.workspace_dir
+    settings.prj_dir = settings.workspace_dir
+    settings.save_dir = os.path.join(settings.prj_dir, "/mnt/data/src/hockeymom_2/models/MixFormer/MixFormer_Outputs")
 
     settings.dataset_dir = f"{os.path.join(os.environ['HOME'], 'src', 'datasets')}"
     settings.tensorboard_dir = (

@@ -94,7 +94,8 @@ def env_settings():
     try:
         env_module = importlib.import_module(env_module_name)
         return env_module.EnvironmentSettings()
-    except:
+    except Exception as ex:
+        print(ex)
         env_file = os.path.join(os.path.dirname(__file__), 'local.py')
 
         create_default_local_file()
